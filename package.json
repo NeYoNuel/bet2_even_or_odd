@@ -1,0 +1,29 @@
+{
+  "name": "bet2_even_or_odd",
+  "version": "1.0.0",
+  "description": "una simple aplicacion de apuesta con zksnark",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeYoNuel/bet2_even_or_odd.git"
+  },
+  "keywords": [
+    "zkp",
+    "zksnark",
+    "bet",
+    "apuesta",
+    "circom"
+  ],
+  "author": "neyonuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeYoNuel/bet2_even_or_odd/issues"
+  },
+  "homepage": "https://github.com/NeYoNuel/bet2_even_or_odd#readme",
+  "dependencies": {
+    "snarkjs": "^0.7.2"
+  }
+}

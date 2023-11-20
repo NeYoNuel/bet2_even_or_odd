@@ -35,7 +35,7 @@ template OneToHundred() {
 // aseguramos la victoria de alice caundo el resultado de la suma es par
 template BetResultIsZero(n) {
     signal input in[n]; // se declara un array para dos entradas
-	signal input result_sum;
+	signal output result_sum;
     signal output aliceWins;
 	signal inv, result, finish_parity;  // señales intermedias
 	
@@ -45,6 +45,7 @@ template BetResultIsZero(n) {
 	  inRange[i].in <== in[i];
 	}
 	
+	result_sum <== in[0] + in[1];
 	0 === in[0] + in[1] - result_sum; // restricion que satiface la suma para el resultado
 	
 	finish_parity <-- inRange[0].paritynumber ^ inRange[1].paritynumber;
@@ -61,4 +62,4 @@ template BetResultIsZero(n) {
     result*aliceWins === 0;
 }
 
-component main {public [result_sum]} = BetResultIsZero(2);
+component main = BetResultIsZero(2);
