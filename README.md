@@ -17,25 +17,25 @@ Se requiere que el probador proporcione el testigo valido (s1) para generar un
 ### Fase 1
 #### Compilación de circuitos
 
-Para nuestra aplicación desarrollamos el siguiente circuito en `circom` con 3 templates para generar las restricciones  generando el archivo `bet_even_or_odd.circom`
+Para nuestra aplicación desarrollamos el siguiente circuito en `circom` con 3 templates para generar las restricciones  generando el archivo `bet2_even_or_odd.circom`
 
 
 Podemos inspeccionar nuestro código de circom para revisar sugerencias, advertencias o errores de la siguiente forma:
 ```bash
-circom bet_even_or_odd.circom --inspect
+circom bet2_even_or_odd.circom --inspect
 ```
 ![[circom --inspect.png]]
 
-Luego compilamos el circuito `bet_even_or_odd.circom` de la siguiente forma:
+Luego compilamos el circuito `bet2_even_or_odd.circom` de la siguiente forma:
 
 ```bash
 circom bet2_even_or_odd.circom --r1cs --wasm --sym --c --json
 ```
 ![[circom compiler.png]]
 
-- `r1cs`: Generar `bet_even_or_odd.r1cs`, que contiene una descripción del sistema de restricciones;
+- `r1cs`: Generar `bet2_even_or_odd.r1cs`, que contiene una descripción del sistema de restricciones;
 - `--wasm`: Generar `Wasm`código, utilizado para generar `testigo (witness)`;
-- `--sym`: Genera `bet_even_or_odd.sym` archivos de símbolos para depuración;
+- `--sym`: Genera `bet2_even_or_odd.sym` archivos de símbolos para depuración;
 - `--c`: Genera código C para la generación de `testigo (witness)`.
 
 #### Generar testigo (witness)
@@ -46,7 +46,7 @@ La entrada de compilación `input.json` es:
 {"in": [15, 100]}
 ```
 
-Luego accedemos a la ruta `bet_even_or_odd_js` llamamos al archivo `Wasm` para generar el `witness`como:
+Luego accedemos a la ruta `bet2_even_or_odd_js` llamamos al archivo `Wasm` para generar el `witness` que permite verificar la autenticidad de la declaración sin revelar la información subyacente, en la evaluación cifrada de los polinomios de Lgrange y en la generación de claves:
 ```bash
 node generate_witness.js bet2_even_or_odd.wasm input.json witness.wtns
 ```
@@ -135,7 +135,7 @@ snarkjs groth16 prove bet2_even_or_odd_final.zkey witness.wtns proof.json public
 
 IMPORTANTE: Tenga en cuenta que también es posible crear la prueba y calcular el testigo a la vez con el mismo comando ejecutando:
 ```bash
-snarkjs groth16 fullprove input.json bet_even_or_odd.wasm bet_even_or_odd_final.zkey prueba.json public.json
+snarkjs groth16 fullprove input.json bet2_even_or_odd.wasm bet2_even_or_odd_final.zkey prueba.json public.json
 ```
 
 `proof.json` contiene la prueba real, mientras que `public.json`contiene los valores de las entradas y salidas públicas.
